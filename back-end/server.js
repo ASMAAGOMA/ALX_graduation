@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const {logger, logevent} = require('./middleware/logger')
 const mongoose = require('mongoose')
+
 const errorhandler = require('./middleware/errorhandler')
 const PORT = process.env.PORT || 3500
 const cookieParser = require('cookie-parser')
@@ -17,10 +18,11 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, '/public')))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use('/', require('./routes/root'))
 app.use('/auth', require('./routes/authRoutes'))
 app.use('/users', require('./routes/userRoutes'))
-app.use('/products', require('./routes/productRoutes'))
+app.use('/menu', require('./routes/productRoutes'))
 
 app.all('*', (req, res) => {
     res.status(404)

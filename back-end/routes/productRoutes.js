@@ -7,5 +7,7 @@ router.route('/')
     .post(productsController.createNewProduct)
     .patch(productsController.updateProduct)
     .delete(productsController.deleteProduct)
+// New route to serve product images
+router.get('/:id/image', productsController.getProductImage);
 
 module.exports = router

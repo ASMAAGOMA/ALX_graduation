@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'  // Reference to the Product model
+    }],
     roles: [{
         type: String,
         default: "Customer"
@@ -25,11 +29,7 @@ const userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: true
-    },
-    favorites: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    }]
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)
