@@ -4,7 +4,6 @@ import HomePage from './components/Public';
 import AboutPage from './components/About';
 import ContactPage from './components/Contact';
 import MenuPage from './components/MenuPage';
-import OrderNowPage from './components/OrderNowPage';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import ProductsPage from './features/products/ProductPage';
@@ -51,7 +50,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/favorites" element={<FavoriteProducts />} />
         <Route element={<RequireAuth />}>
-          <Route path="/order" element={<OrderNowPage />} />
         </Route>
         <Route 
             path="/admin" 

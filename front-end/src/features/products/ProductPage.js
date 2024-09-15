@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DashHeader from '../../components/DashHeader';
 import DashFooter from '../../components/DashFooter';
-import ProductsList from './ProductsList';
+import ProductsList from './ProductList';
 
 const ProductsPage = () => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);

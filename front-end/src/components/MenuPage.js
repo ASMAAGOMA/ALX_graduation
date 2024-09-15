@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './DashHeader';
 import Footer from './DashFooter';
-import ProductsList from '../features/products/ProductsList';
 
 const categories = [
   { name: 'Hot Drinks', slug: 'hot-drinks' },

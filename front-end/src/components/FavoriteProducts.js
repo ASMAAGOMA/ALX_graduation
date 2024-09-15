@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import DashHeader from './DashHeader';
 import Footer from './DashFooter';
-import ProductModal from './ProductModal ';
+import ProductModal from './ProductModal';
 import { updateUserFavorites } from '../features/auth/authSlice';
 
 const FavoriteProducts = () => {
