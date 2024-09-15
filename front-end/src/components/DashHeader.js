@@ -12,7 +12,7 @@ const DashHeader = () => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
-  const adminEmails = ['asmaagadallaah@gmail.com', 'asmaaGad@gmail.com']
+  const adminEmails = ['asmaagadallaah@gmail.com', 'asmaaGad@gmail.com', 'abrargomaa111@gmail.com']
 
   return (
     <header className="header">
