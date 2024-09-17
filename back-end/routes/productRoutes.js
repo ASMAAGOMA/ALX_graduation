@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const productsController = require('../controllers/productControllers')
+const cors = require('cors');
+const { corsOptions } = require('../config/corsOptions')
+
+router.use(cors(corsOptions));
+router.options('*', cors(corsOptions));
 
 router.route('/')
     .get(productsController.getAllProducts)
