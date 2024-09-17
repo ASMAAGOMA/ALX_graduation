@@ -1,6 +1,6 @@
 const allowedOrigins = [
-    'http://localhost:3000',
-    'https://cozycornerfront.vercel.app/'
-]
+    'https://cozycornerfront.vercel.app',
+    'https://cozycorner-delta.vercel.app'
+];
 
-module.exports = allowedOrigins
+module.exports = allowedOrigins;
