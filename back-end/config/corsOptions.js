@@ -1,17 +1,15 @@
-const allowedOrigins = require('./allowedorigin')
+const allowed = require('./allowedorigin')
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
+    origin: (origin, callback) =>{
+        if (allowed.indexOf(origin) !== -1 || !origin) {
+            callback(null, true)
+        }
+        else {
+            callback(new Error('Not allowed by CORES'))
         }
     },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200
-};
-
-module.exports = corsOptions;
+    optionSuccessStatus: 200
+}
+module.exports = corsOptions

@@ -77,7 +77,7 @@ const Product = ({ productId }) => {
         <>
             <div className="product-card" onClick={handleCardClick}>
                 <div className="product-image">
-                    <img src={`https://cozycorner-kappa.vercel.app/uploads/${product.image}`} alt={product.name} />
+                    <img src={`http://localhost:3500/uploads/${product.image}`} alt={product.name} />
                 </div>
                 <div className="product-details">
                     <h3 className="product-name">{product.name}</h3>
@@ -99,7 +99,7 @@ const Product = ({ productId }) => {
                         <button className="modal-close" onClick={handleCloseModal}>&times;</button>
                         <div className="modal-content">
                             <img 
-                                src={`https://cozycorner-kappa.vercel.app/uploads/${product.image}`} 
+                                src={`http://localhost:3500/uploads/${product.image}`} 
                                 alt={product.name} 
                                 className="modal-image" 
                             />

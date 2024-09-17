@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials, logOut } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://cozycorner-kappa.vercel.app',
+    baseUrl: 'http://localhost:3500',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token
@@ -10,59 +10,32 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set("authorization", `Bearer ${token}`)
         }
-        headers.set('Content-Type', 'application/json')
         return headers
     }
 })
 
+// In apiSlice.js
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-    let result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(args, api, extraOptions);
 
-    if (result?.error?.status === 403) {
-        console.log('sending refresh token');
+  if (result?.error?.status === 403) {
+    console.log('sending refresh token');
 
-        // Try to get a new token
-        const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
+    const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
 
-        if (refreshResult?.data) {
-            // Store the new token
-            api.dispatch(setCredentials({ ...refreshResult.data }));
-
-            // Retry the original query with new access token
-            result = await baseQuery(args, api, extraOptions);
-        } else {
-            api.dispatch(logOut());
-        }
+    if (refreshResult?.data) {
+      api.dispatch(setCredentials({ ...refreshResult.data }));
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(logOut());
     }
+  }
 
-    return result;
+  return result;
 }
 
 export const apiSlice = createApi({
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['Note', 'User', 'Menu'], // Add 'Menu' if you have menu-related endpoints
-    endpoints: builder => ({
-        // Define your endpoints here
-        login: builder.mutation({
-            query: credentials => ({
-                url: '/auth/login',
-                method: 'POST',
-                body: { ...credentials }
-            })
-        }),
-        refresh: builder.mutation({
-            query: () => ({
-                url: '/auth/refresh',
-                method: 'GET',
-            })
-        }),
-        // Add other endpoints as needed
-    })
+    tagTypes: ['Note', 'User'],
+    endpoints: builder => ({})
 })
-
-// Export hooks for usage in functional components
-export const {
-    useLoginMutation,
-    useRefreshMutation,
-    // Export other endpoint hooks here
-} = apiSlice

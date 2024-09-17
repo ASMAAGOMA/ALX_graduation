@@ -1,2 +1,4 @@
-const allowedOrigins = ['https://cozycornerfront.vercel.app', 'http://localhost:3000'];
-export default allowedOrigins;
+const allowed = [
+    'http://localhost:3000'
+]
+module.exports= allowed

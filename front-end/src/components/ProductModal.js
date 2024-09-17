@@ -24,7 +24,7 @@ const ProductModal = ({ product, onClose, onFavoriteClick, isFavorite }) => {
         <div className="modal-content">
           <img
             className="modal-image"
-            src={`https://cozycorner-kappa.vercel.app/uploads/${product.image}`}
+            src={`http://localhost:3500/uploads/${product.image}`}
             alt={product.name}
           />
           <div className="modal-product-info">
