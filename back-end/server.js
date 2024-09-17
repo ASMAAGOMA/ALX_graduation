@@ -12,9 +12,14 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/dbConn')
 
-connectDB()
 app.use(logger)
-app.use(cors(corsOptions))
+app.use(cors({
+    origin: 'https://cozycornerfront.vercel.app/',
+    methods: ["POST", "GET"],
+    credentials: true,
+    optionsSuccessStatus: 200
+  }));
+connectDB()
 app.use(express.json())
 app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, '/public')))
