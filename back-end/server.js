@@ -10,15 +10,11 @@ const PORT = process.env.PORT || 3500
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
+const allowedOrigins = require('./config/allowedorigin');
 const connectDB = require('./config/dbConn')
 
 app.use(logger)
-app.use(cors({
-    origin: 'https://cozycornerfront.vercel.app',
-    methods: ["POST", "GET"],
-    credentials: true,
-    optionsSuccessStatus: 200
-}));
+app.use(cors(corsOptions));
 connectDB()
 app.use(express.json())
 app.use(cookieParser())
