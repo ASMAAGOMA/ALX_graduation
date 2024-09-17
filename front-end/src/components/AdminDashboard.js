@@ -15,6 +15,7 @@ const AdminDashboard = () => {
     const [products, setProducts] = useState([]);
     const [newProduct, setNewProduct] = useState({ name: '', price: '', category: '', description: '', image: null });
     const [editProduct, setEditProduct] = useState(null);
+    axios.defaults.withCredentials = true;
 
     // Fetch all products
     const fetchProducts = async () => {
