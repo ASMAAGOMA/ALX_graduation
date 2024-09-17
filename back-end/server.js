@@ -15,6 +15,16 @@ const connectDB = require('./config/dbConn')
 
 app.use(logger)
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
 connectDB()
 app.use(express.json())
 app.use(cookieParser())
@@ -24,6 +34,8 @@ app.use('/', require('./routes/root'))
 app.use('/auth', require('./routes/authRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('/menu', require('./routes/productRoutes'))
+
+
 
 app.all('*', (req, res) => {
     res.status(404)
