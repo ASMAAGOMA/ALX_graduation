@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     // Fetch all products
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('https://cozycorner-delta.vercel.app/menu');
+            const response = await axios.get('https://cozycorner-kappa.vercel.app/menu');
             setProducts(response.data);
         } catch (error) {
             console.error('Failed to fetch products:', error);
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
         formData.append('image', newProduct.image);
 
         try {
-            await axios.post('https://cozycorner-delta.vercel.app/menu', formData, {
+            await axios.post('https://cozycorner-kappa.vercel.app/menu', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             fetchProducts();
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
     // Handle deleting a product
     const handleDeleteProduct = async (id) => {
         try {
-            await axios.delete('https://cozycorner-delta.vercel.app/menu', { data: { id } });
+            await axios.delete('https://cozycorner-kappa.vercel.app/menu', { data: { id } });
             fetchProducts();
         } catch (error) {
             console.error('Error deleting product:', error);
@@ -85,7 +85,7 @@ const AdminDashboard = () => {
         }
 
         try {
-            await axios.patch('https://cozycorner-delta.vercel.app/menu', formData, {
+            await axios.patch('https://cozycorner-kappa.vercel.app/menu', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             fetchProducts();
@@ -124,7 +124,7 @@ const AdminDashboard = () => {
                         <div className="product-grid">
                             {products.map((product) => (
                                 <div key={product._id} className="product-item">
-                                    <img src={`https://cozycorner-delta.vercel.app/uploads/${product.image}`} alt={product.name} className="product-image" />
+                                    <img src={`https://cozycorner-kappa.vercel.app/uploads/${product.image}`} alt={product.name} className="product-image" />
                                     <div className="product-details">
                                         <h3>{product.name}</h3>
                                         <p>Price: ${product.price}</p>
