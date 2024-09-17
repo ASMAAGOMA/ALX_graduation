@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Async thunk for fetching user data
 export const fetchUserData = createAsyncThunk('auth/fetchUserData', async (accessToken) => {
-    const response = await fetch('http://localhost:3500/auth/me', {
+    const response = await fetch('https://cozycorner-delta.vercel.app/auth/me', {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }
